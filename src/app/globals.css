@@ -1,26 +1,39 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+   :root {
+     /* Paleta Ágape 2026 - Tema Fórmula 1 */
+     --color-racing-red: #E10600;
+     --color-carbon-black: #111317;
+     --color-bone-white: #F5F5F0;
+     --color-amber-gold: #F2A900;
+     --color-flag-green: #00A651;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+     --background: var(--color-bone-white);
+     --foreground: var(--color-carbon-black);
+   }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+   @theme inline {
+     --color-background: var(--background);
+     --color-foreground: var(--foreground);
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+     /* Exponemos nuestros colores como utilidades de Tailwind */
+     --color-racing-red: var(--color-racing-red);
+     --color-carbon-black: var(--color-carbon-black);
+     --color-bone-white: var(--color-bone-white);
+     --color-amber-gold: var(--color-amber-gold);
+     --color-flag-green: var(--color-flag-green);
+
+     /* Tipografías */
+     --font-heading: var(--font-rajdhani);
+     --font-sans: var(--font-inter);
+   }
+
+   body {
+     background: var(--background);
+     color: var(--foreground);
+     font-family: var(--font-sans);
+   }
+
+   h1, h2, h3, h4, h5, h6 {
+     font-family: var(--font-heading);
+   }
