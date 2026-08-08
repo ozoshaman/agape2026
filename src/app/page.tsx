@@ -1,7 +1,15 @@
-export default function Home() {
+import HeroBanner from "@/components/secciones/HeroBanner";
+   import QueEsAgape from "@/components/secciones/QueEsAgape";
+   import Historia from "@/components/secciones/Historia";
+   import InfoEvento from "@/components/secciones/InfoEvento";
+
+   export default function Home() {
      return (
-       <div className="p-8">
-         <h1 className="text-3xl font-bold">Página de inicio (en construcción)</h1>
-       </div>
+       <>
+         <HeroBanner />
+         <QueEsAgape />
+         <Historia />
+         <InfoEvento />
+       </>
      );
    }
