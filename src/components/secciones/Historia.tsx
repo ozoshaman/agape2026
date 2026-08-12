@@ -1,6 +1,6 @@
 export default function Historia() {
      return (
-       <section className="max-w-6xl mx-auto px-4 py-16 md:py-24">
+       <section id="historia" className="max-w-6xl mx-auto px-4 py-16 md:py-24 scroll-mt-20">
          <div className="flex flex-col md:flex-row-reverse items-center gap-10">
            {/* Texto */}
            <div className="flex-1 flex flex-col gap-4">
