@@ -4,14 +4,14 @@
    import Link from "next/link";
 
    const NAV_LINKS = [
-     { href: "/", label: "Inicio" },
-     { href: "/agape", label: "¿Qué es Ágape?" },
-     { href: "/historia", label: "Historia" },
-     { href: "/evento", label: "Evento" },
-     { href: "/expositores", label: "Expositores" },
-     { href: "/galeria", label: "Galería" },
-     { href: "/ubicacion", label: "Ubicación" },
-   ];
+      { href: "/", label: "Inicio" },
+      { href: "/#agape", label: "¿Qué es Ágape?" },
+      { href: "/#historia", label: "Historia" },
+      { href: "/#evento", label: "Evento" },
+      { href: "/expositores", label: "Expositores" },
+      { href: "/galeria", label: "Galería" },
+      { href: "/ubicacion", label: "Ubicación" },
+    ];
 
    export default function Navbar() {
      const [menuAbierto, setMenuAbierto] = useState(false);

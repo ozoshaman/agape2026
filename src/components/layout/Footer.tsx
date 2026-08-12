@@ -36,10 +36,10 @@ import Link from "next/link";
            <div className="flex flex-col gap-2">
              <p className="text-bone-white/70 text-sm">Síguenos</p>
              <div className="flex gap-4">
-               <a href="#" className="text-bone-white hover:text-amber-gold transition-colors" aria-label="Facebook">
+               <a href="https://www.facebook.com/share/1DLjn6YGh8/" target="_blank" rel="noopener noreferrer" className="text-bone-white hover:text-amber-gold transition-colors" aria-label="Facebook">
                  Facebook
                </a>
-               <a href="#" className="text-bone-white hover:text-amber-gold transition-colors" aria-label="Instagram">
+               <a href="https://www.instagram.com/raj.agape?igsh=em1zOWh4cGN2NDF4" target="_blank" rel="noopener noreferrer" className="text-bone-white hover:text-amber-gold transition-colors" aria-label="Instagram">
                  Instagram
                </a>
              </div>

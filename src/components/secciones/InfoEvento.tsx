@@ -5,7 +5,7 @@ const DATOS_EVENTO = [
      },
      {
        titulo: "Ciudad",
-       valor: "Aguascalientes, Ags.",
+       valor: "Monclova, COAH.",
      },
      {
        titulo: "Lugar",
@@ -15,7 +15,7 @@ const DATOS_EVENTO = [
 
    export default function InfoEvento() {
      return (
-       <section className="bg-carbon-black py-16 md:py-24">
+       <section id="evento" className="bg-carbon-black py-16 md:py-24 scroll-mt-20">
          <div className="max-w-6xl mx-auto px-4 flex flex-col gap-10">
            <div className="text-center flex flex-col gap-2">
              <span className="text-amber-gold font-semibold tracking-widest uppercase text-sm">
