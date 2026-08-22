@@ -5,9 +5,9 @@
 
    const NAV_LINKS = [
       { href: "/", label: "Inicio" },
-      { href: "/#agape", label: "¿Qué es Ágape?" },
-      { href: "/#historia", label: "Historia" },
-      { href: "/#evento", label: "Evento" },
+      //{ href: "/#agape", label: "¿Qué es Ágape?" },
+      //{ href: "/#historia", label: "Historia" },
+      //{ href: "/#evento", label: "Evento" },
       { href: "/expositores", label: "Expositores" },
       { href: "/galeria", label: "Galería" },
       { href: "/ubicacion", label: "Ubicación" },

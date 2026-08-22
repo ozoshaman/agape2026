@@ -8,6 +8,8 @@ export type Expositor = {
      orden: number;
      created_at: string;
    };
+   
+   export type CategoriaGaleria = "momento_clave" | "foto_oficial" | "clip_video";
 
    export type ItemGaleria = {
      id: string;
@@ -15,5 +17,6 @@ export type Expositor = {
      url: string;
      descripcion: string | null;
      evento_anio: number;
+     categoria: CategoriaGaleria;
      created_at: string;
    };
