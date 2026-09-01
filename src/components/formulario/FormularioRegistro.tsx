@@ -145,6 +145,8 @@ export default function FormularioRegistro() {
           <option value="" disabled>
             Selecciona una opción
           </option>
+          <option value="2026-12-09">Miércoles 9 de diciembre</option>
+          <option value="2026-12-10">Jueves 10 de diciembre</option>
           <option value="2026-12-11">Viernes 11 de diciembre</option>
           <option value="2026-12-12">Sábado 12 de diciembre</option>
         </select>

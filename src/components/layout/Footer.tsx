@@ -4,7 +4,7 @@ import Link from "next/link";
      const anioActual = new Date().getFullYear();
 
      return (
-       <footer className="bg-carbon-black border-t border-racing-red mt-16">
+       <footer className="bg-carbon-black border-t border-racing-red">
          <div className="max-w-6xl mx-auto px-4 py-8 flex flex-col md:flex-row md:justify-between gap-6">
            {/* Columna 1: nombre del evento */}
            <div>

@@ -1,6 +1,7 @@
+ import Image from "next/image";
 export default function QueEsAgape() {
      return (
-       <section id="agape" className="max-w-6xl mx-auto px-4 py-16 md:py-24 scroll-mt-20">
+       <section id="agape" className="max-w-6xl mx-auto px-4 pt-16 md:pt-24 pb-8 md:pb-12 scroll-mt-20">
          <div className="flex flex-col md:flex-row items-center gap-10">
            {/* Texto */}
            <div className="flex-1 flex flex-col gap-4">
@@ -23,14 +24,18 @@ export default function QueEsAgape() {
              </p>
            </div>
 
-           {/* Imagen placeholder */}
-           <div className="flex-1 w-full">
-             <div className="w-full aspect-video bg-carbon-black/10 rounded-lg flex items-center justify-center border-2 border-dashed border-carbon-black/20">
-               <span className="text-carbon-black/40 text-sm">
-                 [Imagen placeholder — Ágape]
-               </span>
-             </div>
-           </div>
+            {/* Imagen real */}
+               <div className="flex-1 w-full">
+                 <div className="relative w-full aspect-video rounded-lg overflow-hidden">
+                   <Image
+                     src="/agape15.jpg"
+                     alt="Ediciones anteriores de Ágape"
+                     fill
+                     sizes="(max-width: 768px) 100vw, 50vw"
+                     className="object-cover"
+                   />
+                 </div>
+               </div>
          </div>
        </section>
      );

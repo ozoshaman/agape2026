@@ -6,6 +6,8 @@ export type Expositor = {
      biografia: string | null;
      tema: string | null;
      orden: number;
+     numero_piloto: number | null;
+     procedencia: string | null;
      created_at: string;
    };
    
