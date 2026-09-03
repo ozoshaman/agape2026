@@ -1,61 +1,73 @@
-type Sede = {
+   import Image from "next/image";
+
+   export type Sede = {
+     numero: string;
      nombre: string;
-     dia: string;
      direccion: string;
-     embedUrl: string;
+     fecha: string;
      mapsUrl: string;
    };
 
-   const SEDES: Sede[] = [
+   export const SEDES: Sede[] = [
      {
-       nombre: "Iglesia de Cristo Héroes del 47",
-       dia: "Viernes y sábado",
-       direccion: "Monclova, Coahuila",
-       embedUrl:
-         "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3557.70863227738!2d-101.41296592448685!3d26.912740676647164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x868bcd933ada0c61%3A0xf813baed41b6b56a!2sIglesia%20De%20Cristo%20Heroes%20Del%2047!5e0!3m2!1ses-419!2smx!4v1786390726257!5m2!1ses-419!2smx",
+       numero: "01",
+       nombre: "Gimnasio Municipal Milo Martínez de la Rosa",
+       direccion: "Cdad. Deportiva, 25750 Monclova, Coah., México",
+       fecha: "11 - 12 DICIEMBRE 2026",
        mapsUrl:
-         "https://www.google.com/maps/search/?api=1&query=Iglesia+de+Cristo+Heroes+del+47",
+         "https://www.google.com/maps/search/?api=1&query=Gimnasio+Municipal+Milo+Martinez+de+la+Rosa+Monclova+Coahuila",
      },
    ];
 
    export default function UbicacionMap() {
      return (
-       <div className="flex flex-col gap-10">
-         {SEDES.map((sede) => (
-           <div
-             key={sede.nombre}
-             className="flex flex-col gap-4 border border-carbon-black/10 rounded-lg p-6"
-           >
-             <div className="flex flex-col gap-1">
-               <span className="text-racing-red font-semibold uppercase text-sm tracking-widest">
-                 {sede.dia}
-               </span>
-               <h3 className="text-xl font-bold text-carbon-black">
+       <div className="flex flex-col lg:flex-row gap-10 lg:gap-12 items-start">
+         {/* Imagen estática del circuito */}
+         <div className="w-full lg:w-[58%] relative aspect-[4/3] rounded-2xl overflow-hidden border border-bone-white/10">
+           <Image
+             src="/Mapa_lugar.jpg"
+             alt="Mapa estilizado del recorrido hacia la sede de Ágape 2026"
+             fill
+             sizes="(max-width: 1024px) 100vw, 58vw"
+             className="object-cover"
+           />
+         </div>
+
+         {/* Información de la(s) sede(s) */}
+         <div className="w-full lg:w-[42%] flex flex-col gap-8">
+           {SEDES.map((sede) => (
+             <div key={sede.numero} className="flex flex-col gap-3">
+               <div className="flex items-center gap-3 text-racing-red">
+                 <span className="text-sm font-bold tracking-widest">
+                   LOCATION / {sede.numero}
+                 </span>
+                 <span className="flex-1 h-px bg-racing-red/40" />
+               </div>
+
+               <h3 className="text-2xl md:text-3xl font-bold text-bone-white uppercase">
                  {sede.nombre}
                </h3>
-               <p className="text-carbon-black/70 text-sm">{sede.direccion}</p>
-             </div>
 
-             <div className="w-full aspect-video rounded-lg overflow-hidden">
-               <iframe
-                 src={sede.embedUrl}
-                 className="w-full h-full border-0"
-                 loading="lazy"
-                 referrerPolicy="no-referrer-when-downgrade"
-                 title={`Mapa de ${sede.nombre}`}
-               />
-             </div>
+               <p className="text-bone-white/60 text-base leading-relaxed">
+                 {sede.direccion}
+               </p>
 
-             <a
-               href={sede.mapsUrl}
-               target="_blank"
-               rel="noopener noreferrer"
-               className="self-start bg-racing-red text-bone-white px-6 py-3 rounded font-semibold hover:bg-amber-gold hover:text-carbon-black transition-colors"
-             >
-               Cómo llegar
-             </a>
-           </div>
-         ))}
+               <p className="text-amber-gold font-semibold text-sm tracking-widest">
+                 {sede.fecha}
+               </p>
+
+               <a
+                 href={sede.mapsUrl}
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 className="group self-start mt-2 inline-flex items-center gap-2 bg-racing-red text-bone-white px-6 py-3 rounded-full font-semibold hover:bg-amber-gold hover:text-carbon-black transition-colors"
+               >
+                 Cómo llegar
+                 <span className="transition-transform group-hover:translate-x-1">→</span>
+               </a>
+             </div>
+           ))}
+         </div>
        </div>
      );
    }

@@ -1,18 +1,26 @@
-import UbicacionMap from "@/components/secciones/UbicacionMap";
+   import UbicacionMap from "@/components/secciones/UbicacionMap";
+   import RevelarAlEntrar from "@/components/ui/RevelarAlEntrar";
 
    export default function UbicacionPage() {
      return (
-       <section className="max-w-4xl mx-auto px-4 py-16 md:py-24">
-         <div className="text-center flex flex-col gap-2 mb-12">
-           <span className="text-racing-red font-semibold tracking-widest uppercase text-sm">
-             ¿Aquí nos vemos?
-           </span>
-           <h1 className="text-3xl md:text-4xl font-bold text-carbon-black">
-             Ubicación
-           </h1>
-         </div>
+       <section className="bg-carbon-black min-h-screen">
+         <div className="max-w-6xl mx-auto px-4 py-16 md:py-24">
+           <div className="flex flex-col gap-2 mb-12 max-w-2xl">
+             <span className="text-racing-red font-semibold tracking-widest uppercase text-sm">
+               Location
+             </span>
+             <h1 className="text-3xl md:text-4xl font-bold text-bone-white uppercase">
+               Dónde nos vemos
+             </h1>
+             <p className="text-bone-white/60">
+               Encuentra el punto donde comenzará esta gran reunión.
+             </p>
+           </div>
 
-         <UbicacionMap />
+           <RevelarAlEntrar>
+             <UbicacionMap />
+           </RevelarAlEntrar>
+         </div>
        </section>
      );
    }
