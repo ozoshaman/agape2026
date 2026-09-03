@@ -1,17 +1,6 @@
-const DATOS_EVENTO = [
-     {
-       titulo: "Fecha",
-       valor: "11 y 12 de diciembre, 2026",
-     },
-     {
-       titulo: "Ciudad",
-       valor: "Monclova, COAH.",
-     },
-     {
-       titulo: "Lugar",
-       valor: "Por confirmar",
-     },
-   ];
+   import { SEDES } from "./UbicacionMap";
+
+   const sedePrincipal = SEDES[0];
 
    export default function InfoEvento() {
      return (
@@ -27,19 +16,41 @@ const DATOS_EVENTO = [
            </div>
 
            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-             {DATOS_EVENTO.map((dato) => (
-               <div
-                 key={dato.titulo}
-                 className="bg-bone-white/5 border border-bone-white/10 rounded-lg p-6 flex flex-col gap-2 text-center"
+             <div className="bg-bone-white/5 border border-bone-white/10 rounded-lg p-6 flex flex-col gap-2 text-center">
+               <span className="text-racing-red font-semibold uppercase text-sm tracking-widest">
+                 Fecha
+               </span>
+               <span className="text-bone-white text-xl font-bold">
+                 11 y 12 de diciembre, 2026
+               </span>
+             </div>
+
+             <div className="bg-bone-white/5 border border-bone-white/10 rounded-lg p-6 flex flex-col gap-2 text-center">
+               <span className="text-racing-red font-semibold uppercase text-sm tracking-widest">
+                 Ciudad
+               </span>
+               <span className="text-bone-white text-xl font-bold">
+                 Monclova, Coah.
+               </span>
+             </div>
+
+             <div className="bg-bone-white/5 border border-bone-white/10 rounded-lg p-6 flex flex-col gap-3 text-center items-center">
+               <span className="text-racing-red font-semibold uppercase text-sm tracking-widest">
+                 Lugar
+               </span>
+               <span className="text-bone-white text-xl font-bold leading-tight">
+                 {sedePrincipal.nombre}
+               </span>
+               <a
+                 href={sedePrincipal.mapsUrl}
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 className="group inline-flex items-center gap-2 text-amber-gold text-sm font-semibold hover:text-bone-white transition-colors"
                >
-                 <span className="text-racing-red font-semibold uppercase text-sm tracking-widest">
-                   {dato.titulo}
-                 </span>
-                 <span className="text-bone-white text-xl font-bold">
-                   {dato.valor}
-                 </span>
-               </div>
-             ))}
+                 Cómo llegar
+                 <span className="transition-transform group-hover:translate-x-1">→</span>
+               </a>
+             </div>
            </div>
          </div>
        </section>
