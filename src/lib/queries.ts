@@ -1,5 +1,5 @@
 import { supabase } from "./supabaseClient";
-   import type { Expositor, ItemGaleria } from "@/types";
+   import type { Expositor, ItemGaleria,Escuderia  } from "@/types";
 
    export async function obtenerExpositores(): Promise<Expositor[]> {
      const { data, error } = await supabase
@@ -23,6 +23,19 @@ import { supabase } from "./supabaseClient";
 
      if (error) {
        console.error("Error al obtener galeria:", error.message);
+       return [];
+     }
+
+     return data ?? [];
+   }
+      export async function obtenerEscuderias(): Promise<Escuderia[]> {
+     const { data, error } = await supabase
+       .from("escuderias")
+       .select("*")
+       .order("numero", { ascending: true });
+
+     if (error) {
+       console.error("Error al obtener escuderias:", error.message);
        return [];
      }
 
