@@ -3,6 +3,7 @@
    import { useRouter } from "next/navigation";
    import { useForm } from "react-hook-form";
    import { zodResolver } from "@hookform/resolvers/zod";
+   import FotoParticipante from "@/components/formulario/FotoParticipante";
    import {
      esquemaRegistro,
      CAMPOS_POR_PASO,
@@ -21,6 +22,8 @@
      const [paso, setPaso] = useState(0);
      const [envioExitoso, setEnvioExitoso] = useState(false);
      const [errorEnvio, setErrorEnvio] = useState<string | null>(null);
+     const [fotoArchivo, setFotoArchivo] = useState<File | null>(null);
+     const [errorFoto, setErrorFoto] = useState<string | null>(null);
      const router = useRouter();
 
      const {
@@ -41,14 +44,21 @@
      const escuderiaIdSeleccionada = watch("escuderia_id");
      const necesitaHospedaje = watch("necesita_hospedaje");
      const medioTransporte = watch("medio_transporte");
-
+     
      const avanzar = async () => {
-       const campos = CAMPOS_POR_PASO[paso];
-       const valido = await trigger(campos);
-       if (valido) {
-         setPaso((p) => Math.min(p + 1, TITULOS_PASO.length - 1));
-       }
-     };
+     const campos = CAMPOS_POR_PASO[paso];
+     const valido = await trigger(campos);
+
+     if (paso === 1 && !fotoArchivo) {
+       setErrorFoto("Selecciona una fotografía para continuar.");
+       return;
+     }
+
+     if (valido) {
+       setErrorFoto(null);
+       setPaso((p) => Math.min(p + 1, TITULOS_PASO.length - 1));
+     }
+   };
 
      const retroceder = () => {
        setPaso((p) => Math.max(p - 1, 0));
@@ -160,72 +170,82 @@
            </div>
          )}
 
-         {/* PASO 2 — Datos del participante */}
-         {paso === 1 && (
-           <div className="flex flex-col gap-6">
-             <div className="flex flex-col gap-1">
-               <label htmlFor="nombre_completo" className="text-carbon-black font-semibold text-sm">
-                 Nombre completo *
-               </label>
-               <input
-                 id="nombre_completo"
-                 type="text"
-                 {...register("nombre_completo")}
-                 className="border border-carbon-black/20 rounded px-4 py-2 focus:outline-none focus:border-racing-red"
-               />
-               {errors.nombre_completo && (
-                 <p className="text-racing-red text-sm">{errors.nombre_completo.message}</p>
-               )}
-             </div>
-
-             <div className="flex flex-col gap-1">
-               <label htmlFor="lugar_procedencia" className="text-carbon-black font-semibold text-sm">
-                 Lugar de procedencia *
-               </label>
-               <input
-                 id="lugar_procedencia"
-                 type="text"
-                 placeholder="Ej. Piedras Negras, Coahuila"
-                 {...register("lugar_procedencia")}
-                 className="border border-carbon-black/20 rounded px-4 py-2 focus:outline-none focus:border-racing-red"
-               />
-               {errors.lugar_procedencia && (
-                 <p className="text-racing-red text-sm">{errors.lugar_procedencia.message}</p>
-               )}
-             </div>
-
-             <div className="flex flex-col gap-1">
-               <label htmlFor="congregacion" className="text-carbon-black font-semibold text-sm">
-                 Congregación *
-               </label>
-               <input
-                 id="congregacion"
-                 type="text"
-                 {...register("congregacion")}
-                 className="border border-carbon-black/20 rounded px-4 py-2 focus:outline-none focus:border-racing-red"
-               />
-               {errors.congregacion && (
-                 <p className="text-racing-red text-sm">{errors.congregacion.message}</p>
-               )}
-             </div>
-
-             <div className="flex flex-col gap-1">
-               <label htmlFor="telefono" className="text-carbon-black font-semibold text-sm">
-                 Teléfono (10 dígitos) *
-               </label>
-               <input
-                 id="telefono"
-                 type="tel"
-                 placeholder="8711234567"
-                 {...register("telefono")}
-                 className="border border-carbon-black/20 rounded px-4 py-2 focus:outline-none focus:border-racing-red"
-               />
-               {errors.telefono && (
-                 <p className="text-racing-red text-sm">{errors.telefono.message}</p>
-               )}
-             </div>
-           </div>
+           {/* PASO 2 — Datos del participante */}
+   {paso === 1 && (
+     <div className="flex flex-col gap-6">
+       <div className="flex flex-col gap-1">
+         <label htmlFor="nombre_completo" className="text-carbon-black font-semibold text-sm">
+           Nombre completo *
+         </label>
+         <input
+           id="nombre_completo"
+           type="text"
+           {...register("nombre_completo")}
+           className="border border-carbon-black/20 rounded px-4 py-2 focus:outline-none focus:border-racing-red"
+         />
+         {errors.nombre_completo && (
+           <p className="text-racing-red text-sm">{errors.nombre_completo.message}</p>
          )}
+       </div>
+
+       <div className="flex flex-col gap-1">
+         <label htmlFor="lugar_procedencia" className="text-carbon-black font-semibold text-sm">
+           Lugar de procedencia *
+         </label>
+         <input
+           id="lugar_procedencia"
+           type="text"
+           placeholder="Ej. Piedras Negras, Coahuila"
+           {...register("lugar_procedencia")}
+           className="border border-carbon-black/20 rounded px-4 py-2 focus:outline-none focus:border-racing-red"
+         />
+         {errors.lugar_procedencia && (
+           <p className="text-racing-red text-sm">{errors.lugar_procedencia.message}</p>
+         )}
+       </div>
+
+       <div className="flex flex-col gap-1">
+         <label htmlFor="congregacion" className="text-carbon-black font-semibold text-sm">
+           Congregación *
+         </label>
+         <input
+           id="congregacion"
+           type="text"
+           {...register("congregacion")}
+           className="border border-carbon-black/20 rounded px-4 py-2 focus:outline-none focus:border-racing-red"
+         />
+         {errors.congregacion && (
+           <p className="text-racing-red text-sm">{errors.congregacion.message}</p>
+         )}
+       </div>
+
+       <div className="flex flex-col gap-1">
+         <label htmlFor="telefono" className="text-carbon-black font-semibold text-sm">
+           Teléfono (10 dígitos) *
+         </label>
+         <input
+           id="telefono"
+           type="tel"
+           placeholder="8711234567"
+           {...register("telefono")}
+           className="border border-carbon-black/20 rounded px-4 py-2 focus:outline-none focus:border-racing-red"
+         />
+         {errors.telefono && (
+           <p className="text-racing-red text-sm">{errors.telefono.message}</p>
+         )}
+       </div>
+
+       <div className="flex flex-col gap-1">
+         <FotoParticipante
+           onCambiar={(archivo) => {
+             setFotoArchivo(archivo);
+             if (archivo) setErrorFoto(null);
+           }}
+         />
+         {errorFoto && <p className="text-racing-red text-sm">{errorFoto}</p>}
+       </div>
+     </div>
+   )}
 
          {/* PASO 3 — Llegada y servicios (fusionado) */}
          {paso === 2 && (
