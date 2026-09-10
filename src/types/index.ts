@@ -22,3 +22,13 @@ export type Expositor = {
      categoria: CategoriaGaleria;
      created_at: string;
    };
+
+    export type Escuderia = {
+     id: string;
+     nombre: string;
+     slug: string;
+     logo_url: string;
+     color_hex: string;
+     numero: number;
+     created_at: string;
+   };

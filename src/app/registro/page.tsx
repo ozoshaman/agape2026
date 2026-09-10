@@ -1,6 +1,9 @@
-import FormularioRegistro from "@/components/formulario/FormularioRegistro";
+   import { obtenerEscuderias } from "@/lib/queries";
+   import FormularioRegistro from "@/components/formulario/FormularioRegistro";
 
-   export default function RegistroPage() {
+   export default async function RegistroPage() {
+     const escuderias = await obtenerEscuderias();
+
      return (
        <section className="max-w-3xl mx-auto px-4 py-16 md:py-24">
          <div className="text-center flex flex-col gap-2 mb-12">
@@ -15,7 +18,7 @@ import FormularioRegistro from "@/components/formulario/FormularioRegistro";
            </p>
          </div>
 
-         <FormularioRegistro />
+         <FormularioRegistro escuderias={escuderias} />
        </section>
      );
    }
