@@ -2,7 +2,7 @@
 
    export const esquemaRegistro = z
      .object({
-       escuderia_id: z.string().uuid("Selecciona una escudería"),
+          escuderia_id: z.string({ error: "Selecciona una escudería" }).min(1, "Selecciona una escudería"),
 
        nombre_completo: z
          .string()

@@ -14,7 +14,7 @@
 
    const TITULOS_PASO = [
      { numero: "01", etiqueta: "Choose your team", titulo: "Selecciona tu escudería" },
-     { numero: "02", etiqueta: "Registration", titulo: "Datos del participante" },
+     { numero: "02", etiqueta: "Registration", titulo: "Datos del Corredor" },
      { numero: "03", etiqueta: "Arrival & Services", titulo: "Llegada y servicios" },
    ];
 
@@ -74,28 +74,46 @@
        }
      };
 
-     const onSubmit = async (data: RegistroFormData) => {
-       setErrorEnvio(null);
+        const onSubmit = async (data: RegistroFormData) => {
+     setErrorEnvio(null);
 
-       try {
-         const respuesta = await fetch("/api/registro", {
-           method: "POST",
-           headers: { "Content-Type": "application/json" },
-           body: JSON.stringify(data),
-         });
+     if (!fotoArchivo) {
+       setErrorFoto("Selecciona una fotografía para continuar.");
+       setPaso(1);
+       return;
+     }
 
-         const resultado = await respuesta.json();
+     try {
+       const formData = new FormData();
+       formData.append("escuderia_id", data.escuderia_id);
+       formData.append("nombre_completo", data.nombre_completo);
+       formData.append("lugar_procedencia", data.lugar_procedencia);
+       formData.append("congregacion", data.congregacion);
+       formData.append("telefono", data.telefono);
+       formData.append("necesita_hospedaje", String(data.necesita_hospedaje));
+       formData.append("necesita_transporte_central", String(data.necesita_transporte_central));
+       if (data.dia_llegada) formData.append("dia_llegada", data.dia_llegada);
+       if (data.medio_transporte) formData.append("medio_transporte", data.medio_transporte);
+       formData.append("foto", fotoArchivo);
 
-         if (!respuesta.ok) {
-           setErrorEnvio(resultado.error ?? "Ocurrió un error inesperado.");
-           return;
-         }
+       const respuesta = await fetch("/api/registro", {
+         method: "POST",
+         body: formData,
+       });
 
-         setEnvioExitoso(true);
-       } catch {
-         setErrorEnvio("No se pudo conectar con el servidor. Verifica tu conexión e intenta de nuevo.");
+       const resultado = await respuesta.json();
+
+       if (!respuesta.ok) {
+         setErrorEnvio(resultado.error ?? "Ocurrió un error inesperado.");
+         return;
        }
-     };
+
+       setEnvioExitoso(true);
+     } catch {
+       setErrorEnvio("No se pudo conectar con el servidor. Verifica tu conexión e intenta de nuevo.");
+     }
+   };
+
      useEffect(() => {
        if (!envioExitoso) return;
        const temporizador = setTimeout(() => {
