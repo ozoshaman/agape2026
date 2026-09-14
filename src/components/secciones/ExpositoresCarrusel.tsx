@@ -28,7 +28,7 @@
      };
 
      return (
-       <div className="flex flex-col gap-6">
+       <div className="flex flex-col gap-6 pb-16 lg:pb-0">
          {/* Contenedor: carrusel en mobile/tablet, grid en desktop */}
          <div
            ref={scrollRef}

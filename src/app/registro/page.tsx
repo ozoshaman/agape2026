@@ -5,7 +5,7 @@
      const escuderias = await obtenerEscuderias();
 
      return (
-       <section className="max-w-3xl mx-auto px-4 py-16 md:py-24">
+          <section className="max-w-3xl mx-auto px-4 pt-25 md:pt-28 pb-16 md:pb-24">
          <div className="text-center flex flex-col gap-2 mb-12">
            <span className="text-racing-red font-semibold tracking-widest uppercase text-sm">
              Asegura tu lugar

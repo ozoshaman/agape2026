@@ -4,7 +4,7 @@
    export default function UbicacionPage() {
      return (
        <section className="bg-carbon-black min-h-screen">
-         <div className="max-w-6xl mx-auto px-4 py-16 md:py-24">
+         <div className="max-w-6xl mx-auto px-4 py-16 pt-22 md:pt-28 md:py-24">
            <div className="flex flex-col gap-2 mb-12 max-w-2xl">
              <span className="text-racing-red font-semibold tracking-widest uppercase text-sm">
                Location
