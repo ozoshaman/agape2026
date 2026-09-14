@@ -6,7 +6,7 @@
 
      return (
        <section className="bg-carbon-black min-h-screen">
-         <div className="max-w-6xl mx-auto py-16 md:py-24">
+         <div className="max-w-6xl mx-auto pt-24 md:pt-28 pb-16 md:pb-24">
            <div className="text-center flex flex-col gap-2 mb-12 px-4">
              <span className="text-racing-red font-semibold tracking-widest uppercase text-sm">
                We Race As One

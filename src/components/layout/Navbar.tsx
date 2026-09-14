@@ -53,13 +53,28 @@
            </Link>
 
            {/* Botón de menú móvil */}
-           <button
-             className="lg:hidden text-bone-white shrink-0 w-8 h-8 flex items-center justify-center"
-             onClick={() => setMenuAbierto(!menuAbierto)}
-             aria-label="Abrir menú"
-           >
-             {menuAbierto ? "✕" : "☰"}
-           </button>
+              <button
+     className="lg:hidden shrink-0 w-10 h-10 flex flex-col items-center justify-center gap-1.5 rounded-full bg-bone-white/10 active:bg-bone-white/20 transition-colors"
+     onClick={() => setMenuAbierto(!menuAbierto)}
+     aria-label={menuAbierto ? "Cerrar menú" : "Abrir menú"}
+     aria-expanded={menuAbierto}
+   >
+     <span
+       className={`block w-5 h-0.5 bg-bone-white rounded-full transition-all duration-200 ${
+         menuAbierto ? "rotate-45 translate-y-2" : ""
+       }`}
+     />
+     <span
+       className={`block w-5 h-0.5 bg-bone-white rounded-full transition-all duration-200 ${
+         menuAbierto ? "opacity-0" : "opacity-100"
+       }`}
+     />
+     <span
+       className={`block w-5 h-0.5 bg-bone-white rounded-full transition-all duration-200 ${
+         menuAbierto ? "-rotate-45 -translate-y-2" : ""
+       }`}
+     />
+   </button>
          </nav>
 
          {/* Menú móvil desplegable */}
