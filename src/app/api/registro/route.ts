@@ -2,10 +2,23 @@
    import { NextRequest, NextResponse } from "next/server";
    import { esquemaRegistro } from "@/lib/validaciones";
    import { supabaseAdmin } from "@/lib/supabaseAdmin";
+      import { permitirIntento } from "@/lib/rateLimit";
 
    const MAX_INTENTOS_NUMERO = 8;
 
    export async function POST(request: NextRequest) {
+     // 0. Rate limiting por IP
+     const ip =
+       request.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
+       request.headers.get("x-real-ip") ??
+       "desconocida";
+
+     if (!permitirIntento(ip)) {
+       return NextResponse.json(
+         { error: "Demasiados intentos. Espera unos minutos e intenta de nuevo." },
+         { status: 429 }
+       );
+     }
      // 1. Leer el FormData (ya no es JSON puro, porque incluye un archivo)
      let formData: FormData;
      try {
