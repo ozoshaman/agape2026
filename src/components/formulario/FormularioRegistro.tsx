@@ -4,6 +4,7 @@
    import { useForm } from "react-hook-form";
    import { zodResolver } from "@hookform/resolvers/zod";
    import FotoParticipante from "@/components/formulario/FotoParticipante";
+   import TurnstileWidget from "@/components/formulario/TurnstileWidget";
    import {
      esquemaRegistro,
      CAMPOS_POR_PASO,
@@ -23,6 +24,7 @@
      const [envioExitoso, setEnvioExitoso] = useState(false);
      const [errorEnvio, setErrorEnvio] = useState<string | null>(null);
      const [fotoArchivo, setFotoArchivo] = useState<File | null>(null);
+     const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
      const [errorFoto, setErrorFoto] = useState<string | null>(null);
      const router = useRouter();
 
@@ -84,7 +86,12 @@
      }
 
      try {
+      if (!turnstileToken) {
+     setErrorEnvio("Completa la verificación de seguridad antes de continuar.");
+     return;
+   }
        const formData = new FormData();
+       formData.append("turnstileToken", turnstileToken);
        formData.append("escuderia_id", data.escuderia_id);
        formData.append("nombre_completo", data.nombre_completo);
        formData.append("lugar_procedencia", data.lugar_procedencia);
@@ -343,6 +350,7 @@
                  )}
                </div>
              )}
+             <TurnstileWidget onToken={setTurnstileToken} />
            </div>
          )}
 
