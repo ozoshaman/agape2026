@@ -2,10 +2,23 @@
    import { NextRequest, NextResponse } from "next/server";
    import { esquemaRegistro } from "@/lib/validaciones";
    import { supabaseAdmin } from "@/lib/supabaseAdmin";
+      import { permitirIntento } from "@/lib/rateLimit";
 
    const MAX_INTENTOS_NUMERO = 8;
 
    export async function POST(request: NextRequest) {
+     // 0. Rate limiting por IP
+     const ip =
+       request.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
+       request.headers.get("x-real-ip") ??
+       "desconocida";
+
+     if (!permitirIntento(ip)) {
+       return NextResponse.json(
+         { error: "Demasiados intentos. Espera unos minutos e intenta de nuevo." },
+         { status: 429 }
+       );
+     }
      // 1. Leer el FormData (ya no es JSON puro, porque incluye un archivo)
      let formData: FormData;
      try {
@@ -13,11 +26,58 @@
      } catch {
        return NextResponse.json({ error: "Cuerpo de la petición inválido." }, { status: 400 });
      }
-
-     const foto = formData.get("foto");
-     if (!(foto instanceof File)) {
-       return NextResponse.json({ error: "La fotografía es obligatoria." }, { status: 400 });
+          // 2. Verificar el token de Turnstile con Cloudflare
+     const turnstileToken = formData.get("turnstileToken");
+     if (typeof turnstileToken !== "string" || !turnstileToken) {
+       return NextResponse.json(
+         { error: "Verificación de seguridad no completada. Recarga la página e intenta de nuevo." },
+         { status: 400 }
+       );
      }
+
+     const verificacion = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+       method: "POST",
+       headers: { "Content-Type": "application/json" },
+       body: JSON.stringify({
+         secret: process.env.TURNSTILE_SECRET_KEY,
+         response: turnstileToken,
+       }),
+     });
+
+     const resultadoVerificacion = await verificacion.json();
+
+     if (!resultadoVerificacion.success) {
+       return NextResponse.json(
+         { error: "No se pudo verificar que eres una persona real. Intenta de nuevo." },
+         { status: 403 }
+       );
+     }
+
+        const FORMATOS_PERMITIDOS = ["image/jpeg", "image/jpg", "image/png"];
+   const TAMANO_MAXIMO_BYTES = 8 * 1024 * 1024; // 8 MB
+
+   const foto = formData.get("foto");
+   if (!(foto instanceof File)) {
+     return NextResponse.json({ error: "La fotografía es obligatoria." }, { status: 400 });
+   }
+
+   if (!FORMATOS_PERMITIDOS.includes(foto.type)) {
+     return NextResponse.json(
+       { error: "Imagen no válida. Solo se aceptan archivos JPG o PNG." },
+       { status: 400 }
+     );
+   }
+
+   if (foto.size > TAMANO_MAXIMO_BYTES) {
+     return NextResponse.json(
+       { error: "La imagen supera el tamaño máximo permitido (8 MB)." },
+       { status: 400 }
+     );
+   }
+
+   if (foto.size === 0) {
+     return NextResponse.json({ error: "El archivo de la fotografía está vacío." }, { status: 400 });
+   }
 
      // 2. Reconstruir los datos "planos" y validar con el mismo esquema de Zod
      const datosCrudos = {
