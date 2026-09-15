@@ -1,5 +1,12 @@
    import { obtenerGaleria } from "@/lib/queries";
    import GaleriaGrid from "@/components/secciones/GaleriaGrid";
+   import type { Metadata } from "next";
+
+   export const metadata: Metadata = {
+     title: "Galería",
+     description: "Fotos y videos de Ágape, la Reunión Juvenil de la Iglesia de Cristo.",
+   };
+   
 
    export default async function GaleriaPage() {
      const galeria = await obtenerGaleria();

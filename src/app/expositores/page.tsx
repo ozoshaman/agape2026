@@ -1,5 +1,11 @@
+   import type { Metadata } from "next";
    import { obtenerExpositores } from "@/lib/queries";
    import ExpositoresCarrusel from "@/components/secciones/ExpositoresCarrusel";
+
+   export const metadata: Metadata = {
+     title: "Expositores",
+     description: "Conoce a los predicadores y encargados del taller de canto de Ágape 2026.",
+   };
 
    export default async function ExpositoresPage() {
      const expositores = await obtenerExpositores();
