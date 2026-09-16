@@ -60,11 +60,11 @@
 
          {/* Zona inferior de información */}
          <div className="flex flex-col gap-1 p-4">
-           <h3 className="text-bone-white text-xl font-bold leading-tight">
+           <h2 className="text-bone-white text-xl font-bold leading-tight">
              {expositor.nombre}
-           </h3>
+           </h2>
            {expositor.procedencia && (
-             <p className="text-bone-white/50 text-sm">{expositor.procedencia}</p>
+                <p className="text-bone-white/70 text-sm">{expositor.procedencia}</p>
            )}
            {expositor.tema && (
              <p className="text-amber-gold text-sm font-semibold mt-1">

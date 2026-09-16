@@ -64,7 +64,7 @@
                // eslint-disable-next-line @next/next/no-img-element -- preview local (blob URL), next/image no aplica aquí
                <img src={preview} alt="Previsualización de la foto" className="w-full h-full object-cover" />
              ) : (
-               <span className="text-carbon-black/30 text-[10px] text-center px-2">
+                  <span className="text-carbon-black/60 text-[10px] text-center px-2">
                  {procesando ? "Procesando…" : "Agrega tu fotografía"}
                </span>
              )}
@@ -90,7 +90,7 @@
                </button>
              )}
 
-             <span className="text-xs text-carbon-black/40">JPG, PNG · Máx. 8 MB</span>
+              <span className="text-xs text-carbon-black/60">JPG, PNG · Máx. 8 MB</span>
            </div>
 
            <input

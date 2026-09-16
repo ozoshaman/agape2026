@@ -1,5 +1,11 @@
    import UbicacionMap from "@/components/secciones/UbicacionMap";
    import RevelarAlEntrar from "@/components/ui/RevelarAlEntrar";
+   import type { Metadata } from "next";
+
+    export const metadata: Metadata = {
+      title: "Ubicación",
+      description: "Dónde se realizará Ágape 2026: Gimnasio Municipal Milo Martínez de la Rosa, Monclova, Coahuila.",
+    };
 
    export default function UbicacionPage() {
      return (

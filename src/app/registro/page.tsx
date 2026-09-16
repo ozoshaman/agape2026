@@ -1,5 +1,11 @@
    import { obtenerEscuderias } from "@/lib/queries";
    import FormularioRegistro from "@/components/formulario/FormularioRegistro";
+   import type { Metadata } from "next";
+
+    export const metadata: Metadata = {
+      title: "Registro",
+      description: "Regístrate para Ágape 2026. Elige tu escudería y asegura tu lugar en la Reunión Juvenil.",
+    };
 
    export default async function RegistroPage() {
      const escuderias = await obtenerEscuderias();

@@ -50,14 +50,19 @@
          {/* Indicadores de posición, solo en mobile/tablet */}
          <div className="flex lg:hidden justify-center gap-2">
            {expositores.map((_, indice) => (
-             <button
-               key={indice}
-               onClick={() => irATarjeta(indice)}
-               aria-label={`Ir al expositor ${indice + 1}`}
-               className={`w-2 h-2 rounded-full transition-colors ${
-                 indice === activo ? "bg-racing-red" : "bg-bone-white/20"
-               }`}
-             />
+                 <button
+      key={indice}
+      onClick={() => irATarjeta(indice)}
+      aria-label={`Ir al expositor ${indice + 1}`}
+      className="w-6 h-6 flex items-center justify-center"
+    >
+      <span
+        className={`w-2 h-2 rounded-full transition-colors ${
+          indice === activo ? "bg-racing-red" : "bg-bone-white/20"
+        }`}
+      />
+    </button>
+             
            ))}
          </div>
        </div>

@@ -42,7 +42,7 @@
            </span>
          )}
 
-         <span className="text-bone-white/40 text-[9px] sm:text-[10px] font-semibold tracking-widest mt-1.5">
+          <span className="text-bone-white/70 text-[9px] sm:text-[10px] font-semibold tracking-widest mt-1.5">
            {String(escuderia.numero).padStart(2, "0")}
          </span>
 
