@@ -44,13 +44,11 @@
                  <span className="flex-1 h-px bg-racing-red/40" />
                </div>
 
-               <h3 className="text-2xl md:text-3xl font-bold text-bone-white uppercase">
+               <h2 className="text-2xl md:text-3xl font-bold text-bone-white uppercase">
                  {sede.nombre}
-               </h3>
+               </h2>
 
-               <p className="text-bone-white/60 text-base leading-relaxed">
-                 {sede.direccion}
-               </p>
+                  <p className="text-bone-white/75 text-sm">{sede.direccion}</p>
 
                <p className="text-amber-gold font-semibold text-sm tracking-widest">
                  {sede.fecha}
