@@ -9,17 +9,17 @@ export default function QueEsAgape() {
                ¿Qué es Ágape?
              </span>
              <h2 className="text-3xl md:text-4xl font-bold text-carbon-black">
-               Un fin de semana para acercarte a Dios y a tu comunidad
+               Un fin de semana para acercarte a Dios y correr en la pista correcta
              </h2>
              <p className="text-carbon-black/70 text-lg leading-relaxed">
-               Ágape es la Reunión Juvenil de la Iglesia de Cristo, un espacio pensado
+               Ágape es la Reunión Anual Juvenil de la Iglesia de Cristo en Monclova Coahuila, un espacio pensado
                para que los jóvenes vivan una experiencia de fe, compañerismo y
                crecimiento espiritual. Cada año jóvenes de distintas congregaciones
                se reúnen para aprender, cantar y compartir juntos.
              </p>
              <p className="text-carbon-black/70 text-lg leading-relaxed">
                En 2026, vivimos esta experiencia con la energía y velocidad de la
-               Fórmula 1 — porque así como en una carrera, en la vida de fe también
+               Fórmula 1, porque así como en una carrera, en la vida de fe también
                necesitamos enfoque, disciplina y un buen equipo detrás.
              </p>
            </div>
