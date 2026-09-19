@@ -21,7 +21,7 @@
 
          <div className="relative max-w-4xl mx-auto px-4 py-24 md:py-36 flex flex-col items-center text-center gap-6">
            <span className="text-amber-gold font-semibold tracking-widest uppercase text-sm">
-             Reunión Juvenil - Iglesia de Cristo
+             Reunión Anual Juvenil - Iglesia de Cristo
            </span>
 
            <h1 className="text-5xl md:text-7xl font-bold text-bone-white leading-tight">

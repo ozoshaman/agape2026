@@ -12,7 +12,7 @@ import Link from "next/link";
                ÁGAPE <span className="text-racing-red">2026</span>
              </p>
              <p className="text-bone-white/70 text-sm mt-1">
-               Reunión Juvenil - Iglesia de Cristo
+               Reunión Anual Juvenil - Iglesia de Cristo
              </p>
              <p className="text-amber-gold text-sm mt-1">
                11 y 12 de diciembre de 2026
