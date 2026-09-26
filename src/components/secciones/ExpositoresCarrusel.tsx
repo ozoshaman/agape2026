@@ -33,12 +33,12 @@
          <div
            ref={scrollRef}
            onScroll={handleScroll}
-           className="flex lg:grid lg:grid-cols-3 gap-4 overflow-x-auto lg:overflow-visible snap-x snap-mandatory lg:snap-none scroll-px-4 px-4 lg:px-0 pb-2 [&::-webkit-scrollbar]:hidden"
+              className="flex md:grid md:grid-cols-4 gap-4 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none scroll-px-4 px-4 md:px-0 pb-2 [&::-webkit-scrollbar]:hidden"
          >
               {expositores.map((expositor, indice) => (
      <div
        key={expositor.id}
-       className="snap-start shrink-0 w-[82%] sm:w-[48%] lg:w-auto"
+       className="snap-start shrink-0 w-[82%] sm:w-[48%] md:w-auto"
      >
                 <RevelarAlEntrar retraso={indice * 100}>
                     <ExpositorCard expositor={expositor} />
@@ -48,7 +48,7 @@
          </div>
 
          {/* Indicadores de posición, solo en mobile/tablet */}
-         <div className="flex lg:hidden justify-center gap-2">
+         <div className="flex md:hidden justify-center gap-2">
            {expositores.map((_, indice) => (
                  <button
       key={indice}
